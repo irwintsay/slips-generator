@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const students = [
+  let students = [
     'Tim',
     'Marcel',
     'Noah',
@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'Sky'
   ];
 
-  const questions = [
-    'What is Git? What is it used for?'
+  let questions = [
+    'What is Git? What is it used for?',
     'What the difference between Git and GitHub?',
     'What are two commonly used types of loops in JavaScript? When would you use one over another?',
     'What does Truthy and Falsey mean? Give examples of each.',
@@ -32,4 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
     'What is an array? What is it used for?',
     'What is a switch statement? What is it used for?'
   ];
+
+  const currentStudent = document.querySelector('.current-student');
+  const currentQuestion = document.querySelector('.current-question');
+  
+  const startSlips = () => {
+    currentStudent.addEventListener('click', (event) => {
+      if(students.length > 0 && questions.length > 0) {
+        currentStudent.innerText = students.pop();
+        currentQuestion.innerText = questions.pop();
+      }
+    });
+  };
+
+  startSlips();
 });
