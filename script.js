@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   let questions = [
-    'What is Git? What is it used for?',
-    'What the difference between Git and GitHub?',
-    'What are two commonly used types of loops in JavaScript? When would you use one over another?',
+    'What is Git? What is the difference between Git and GitHub?',
+    'What is a for loop? Give us an example of how to use it.',
+    'What is a while loop? Give us an example of how to use it.',
     'What does Truthy and Falsey mean? Give examples of each.',
-    'Array methods: what do push(), pop(), shift(), unshift(), and .length do when called on an array?',
+    'Array methods: what do push(), pop(), and .length do when called on an array?',
     'What are the primitive datatypes in JavaScript?',
     'What are two ways of creating grid systems with CSS? Explain how they\'re used.',
     'Explain the Box Model. What is the difference between border-box and content-box?',
@@ -35,12 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const currentStudent = document.querySelector('.current-student');
   const currentQuestion = document.querySelector('.current-question');
+  const nextBtn = document.querySelector('.next-btn');
   
   const startSlips = () => {
-    currentStudent.addEventListener('click', (event) => {
+    nextBtn.addEventListener('click', (event) => {
       if(students.length > 0 && questions.length > 0) {
-        currentStudent.innerText = students.pop();
-        currentQuestion.innerText = questions.pop();
+        currentStudent.innerText = students.splice(Math.round(Math.random() * (students.length-1)), 1)[0];
+        currentQuestion.innerText = questions.splice(Math.round(Math.random() * (questions.length-1)), 1)[0];
+      } else {
+        currentStudent.innerText = 'Finished';
+        currentQuestion.innerText = '';
+        console.log('Finished');
       }
     });
   };
